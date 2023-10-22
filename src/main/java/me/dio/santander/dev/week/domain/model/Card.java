@@ -1,10 +1,21 @@
 package me.dio.santander.dev.week.domain.model;
 
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+
 import java.math.BigDecimal;
 
+@Entity
 public class Card {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotNull
+    @Column(nullable = false, unique = true)
     private String number;
+    @NotNull
+    @Column(name = "available_limit",nullable = false, precision = 2, scale = 13)
     private BigDecimal limit;
 
     public Long getId() {

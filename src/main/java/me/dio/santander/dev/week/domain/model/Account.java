@@ -1,12 +1,26 @@
 package me.dio.santander.dev.week.domain.model;
 
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+
 import java.math.BigDecimal;
 
+@Entity
 public class Account {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotNull
+    @Column(unique = true)
     private String number;
+    @NotNull
+    @Column(nullable = false)
     private String agency;
+    @NotNull
+    @Column(precision = 2 , scale = 13)
     private BigDecimal balance;
+    @Column(name ="addiotnal_limit", scale = 13, precision = 2)
     private BigDecimal limit;
 
     public Long getId() {
